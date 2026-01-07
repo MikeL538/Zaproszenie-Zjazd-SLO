@@ -1,0 +1,33 @@
+.placeholders {
+  margin: 25px 0;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  &Title {
+    font-size: 24px;
+    margin-bottom: 12px;
+  }
+
+  &List {
+    > li {
+      border: 1px solid black;
+      display: flex;
+      align-items: center;
+      margin: 15px;
+      padding: 15px;
+
+      > img {
+        margin-right: 8px;
+      }
+
+      > p {
+        max-width: 170px;
+      }
+    }
+  }
+}
+
+.placeholdersFormGroupSearch {
+  margin-top: 8px;
+}
