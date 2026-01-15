@@ -1,6 +1,37 @@
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
-const supabaseUrl = "url";
-const supabaseKey = "key";
+const supabaseUrl = "https://fmesivvwhqitrmlbwcdb.supabase.co";
+const supabaseKey = "sb_publishable_kSmSt52th8XAYGbce3CtwA_uIdN8fKL";
 
-export const supabase = createClient(supabaseUrl, supabaseKey);
+const supabase = createClient(supabaseUrl, supabaseKey);
+
+async function saveGuest(guestName, eMail, gradYear, addInfo) {
+  const { data, error } = await supabase.from("guest_data").insert([
+    {
+      name: guestName,
+      e_mail: eMail,
+      graduation: gradYear,
+      add_info: addInfo,
+    },
+  ]);
+
+  if (error) {
+    console.error(error);
+    alert("Błąd przy zapisywaniu!");
+    return;
+  }
+
+  alert("Zapisano!");
+}
+
+const btnGuest = document.querySelector("#btnGuest");
+
+btnGuest.addEventListener("click", (e) => {
+  e.preventDefault();
+  const guestName = document.querySelector("#name").value;
+  const email = document.querySelector("#email").value;
+  const year = document.querySelector("#year").value;
+  const message = document.querySelector("#message").value;
+
+  saveGuest(guestName, email, year, message);
+});
