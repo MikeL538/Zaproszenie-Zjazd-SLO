@@ -56,12 +56,24 @@
 
       <form class="registration__form">
         <div class="form-group">
-          <label for="name">Imię i nazwisko</label>
+          <label for="name">Imię</label>
           <input
             type="text"
             id="name"
             name="name"
-            placeholder="Jan Kowalski"
+            maxlength="66"
+            placeholder="Jan"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="surname">Nazwisko</label>
+          <input
+            type="text"
+            id="surname"
+            name="surname"
+            maxlength="66"
+            placeholder="Kowalski"
             required
           />
         </div>
@@ -72,6 +84,7 @@
             type="email"
             id="email"
             name="email"
+            maxlength="66"
             placeholder="jan.kowalski@email.com"
             required
           />
@@ -83,6 +96,7 @@
             type="number"
             id="year"
             name="year"
+            maxlength="4"
             placeholder="2008"
             min="1950"
             max="2025"
@@ -95,6 +109,7 @@
           <textarea
             id="message"
             name="message"
+            maxlength="255"
             placeholder="Np. osoba towarzysząca"
           ></textarea>
         </div>
