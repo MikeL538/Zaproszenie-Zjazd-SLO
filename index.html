@@ -54,13 +54,15 @@
     <section class="registration">
       <h2 class="registration__title">Formularz zapisu</h2>
 
-      <form class="registration__form">
+      <form id="form" class="registration__form">
         <div class="form-group">
           <label for="name">Imię</label>
           <input
             type="text"
             id="name"
             name="name"
+            required
+            minlength="3"
             maxlength="66"
             placeholder="Jan"
             required
@@ -72,6 +74,7 @@
             type="text"
             id="surname"
             name="surname"
+            minlength="3"
             maxlength="66"
             placeholder="Kowalski"
             required
@@ -84,6 +87,7 @@
             type="email"
             id="email"
             name="email"
+            minlength="3"
             maxlength="66"
             placeholder="jan.kowalski@email.com"
             required
@@ -96,6 +100,7 @@
             type="number"
             id="year"
             name="year"
+            minlength="4"
             maxlength="4"
             placeholder="2008"
             min="1950"
@@ -105,16 +110,18 @@
         </div>
 
         <div class="form-group">
-          <label for="message">Dodatkowa informacja (opcjonalnie)</label>
+          <label for="add_info">Dodatkowa informacja (opcjonalnie)</label>
           <textarea
-            id="message"
-            name="message"
+            id="addInfo"
+            name="add_info"
             maxlength="255"
             placeholder="Np. osoba towarzysząca"
           ></textarea>
         </div>
 
-        <button id="btnGuest" type="submit" class="btn-submit">
+        <div><p id="msg"></p></div>
+
+        <button id="btnSubmit" type="submit" class="btn-submit">
           Zapisz się
         </button>
       </form>
