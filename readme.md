@@ -6,6 +6,14 @@ Projekt ma charakter informacyjno-rejestracyjny i stanowi bazę pod dalszą rozb
 
 ---
 
+## GitHub Pages / Live Preview
+
+Strona jest dostępna w wersji online pod adresem:
+
+👉 **https://mikel538.github.io/Zaproszenie-Zjazd-SLO/**
+
+---
+
 ## Funkcjonalności
 
 - Sekcja hero z grafiką wydarzenia
@@ -17,6 +25,22 @@ Projekt ma charakter informacyjno-rejestracyjny i stanowi bazę pod dalszą rozb
   - rok ukończenia szkoły
   - dodatkowe informacje (opcjonalnie)
 - Prototyp sekcji wyszukiwania absolwentów (placeholder)
+
+---
+
+## Demo / Panel administracyjny
+
+Dla portfolio / prezentacji projektu dostępny jest panel administracyjny, który pozwala zobaczyć listę zapisanych uczestników w trybie demo.
+
+**Panel admina (demo mode)**  
+👉 **https://mikel538.github.io/Zaproszenie-Zjazd-SLO-Admin/**
+
+**Demo credentials:**
+
+- **Email:** `test`
+- **Password:** `test`
+
+> Dane w demo są fikcyjne i służą wyłącznie do prezentacji funkcjonalności. Realne zgłoszenia są zabezpieczone i dostępne tylko dla kont zaproszonych w Supabase.
 
 ---
 
@@ -35,12 +59,15 @@ Projekt ma charakter informacyjno-rejestracyjny i stanowi bazę pod dalszą rozb
 - style.min.css
 - README.md
 
+---
+
 ## Uruchomienie projektu lokalnie
 
 1. Sklonuj repozytorium:
 
    ```bash
    git clone https://github.com/twoj-login/zjazd-absolwentow-slo.git
+
    ```
 
 2. Otwórz plik index.html w przeglądarce
