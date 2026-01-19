@@ -1,38 +1,38 @@
-# Zjazd Absolwentów SLO - w trakcie rozwoju
+# SLO Alumni Reunion – In Progress
 
-Strona internetowa zjazdu absolwentów SLO, umożliwiająca zapoznanie się z informacjami o wydarzeniu oraz zapis uczestników poprzez formularz rejestracyjny.
+A website for the SLO alumni reunion, allowing visitors to learn about the event and register via a sign-up form.
 
-Projekt ma charakter informacyjno-rejestracyjny i stanowi bazę pod dalszą rozbudowę (np. backend, walidację danych, wyszukiwanie absolwentów).
+This project serves as an **informational and registration prototype** and forms a foundation for future development (e.g., backend integration, data validation, alumni search).
 
 ---
 
 ## GitHub Pages / Live Preview
 
-Strona jest dostępna w wersji online pod adresem:
+The site is available online at:
 
 👉 **https://mikel538.github.io/Zaproszenie-Zjazd-SLO/**
 
 ---
 
-## Funkcjonalności
+## Features
 
-- Sekcja hero z grafiką wydarzenia
-- Opis wydarzenia i celu zjazdu absolwentów
-- Sekcja informacyjna (placeholdery pod przyszłe treści)
-- Formularz zapisu uczestników:
-  - imię i nazwisko
-  - adres e-mail
-  - rok ukończenia szkoły
-  - dodatkowe informacje (opcjonalnie)
-- Prototyp sekcji wyszukiwania absolwentów (placeholder)
+- Hero section with event graphics
+- Event description and purpose of the alumni reunion
+- Informational sections (placeholders for future content)
+- Participant registration form:
+  - First name and last name
+  - Email address
+  - Graduation year
+  - Additional information (optional)
+- Prototype of alumni search section (placeholder)
 
 ---
 
-## Demo / Panel administracyjny
+## Demo / Admin Panel
 
-Dla portfolio / prezentacji projektu dostępny jest panel administracyjny, który pozwala zobaczyć listę zapisanych uczestników w trybie demo.
+For portfolio and presentation purposes, a **demo admin panel** is available to showcase registered participants.
 
-**Panel admina (demo mode)**  
+**Admin Panel (Demo Mode)**  
 👉 **https://mikel538.github.io/Zaproszenie-Zjazd-SLO-Admin/**
 
 **Demo credentials:**
@@ -40,46 +40,47 @@ Dla portfolio / prezentacji projektu dostępny jest panel administracyjny, któr
 - **Email:** `test`
 - **Password:** `test`
 
-> Dane w demo są fikcyjne i służą wyłącznie do prezentacji funkcjonalności. Realne zgłoszenia są zabezpieczone i dostępne tylko dla kont zaproszonych w Supabase.
+> Demo data is **fictional** and intended solely to demonstrate functionality. Real submissions are protected and only accessible to invited accounts via Supabase.
 
 ---
 
-## Technologie
+## Technologies
 
 - HTML5
-- CSS3 (plik `style.min.css`)
-- Responsywny layout (viewport)
-- Brak frameworków – czysty frontend (vanilla)
+- CSS3 (`style.min.css`)
+- Responsive layout (viewport meta)
+- Vanilla JavaScript (no frameworks)
+- SQL Supabase
 
 ---
 
-## Struktura projektu
+## Project Structure
 
-- index.html
-- style.min.css
-- README.md
+- `index.html`
+- `style.min.css`
+- `./js/script.js`
+- `./img/`
+- `README.md`
 
 ---
 
-## Uruchomienie projektu lokalnie
+## Running the Project Locally
 
-1. Sklonuj repozytorium:
+1. Clone the repository:
 
-   ```bash
-   git clone https://github.com/twoj-login/zjazd-absolwentow-slo.git
+```bash
+git clone https://github.com/your-username/zjazd-absolwentow-slo.git
+```
 
-   ```
+2. Open index.html in a web browser (double-click or via a local server, e.g., Live Server in VS Code).
 
-2. Otwórz plik index.html w przeglądarce
-   (dwuklik lub przez serwer lokalny, np. Live Server w VS Code).
+## Project Status
 
-## Status projektu
-
-- Projekt w fazie frontend MVP.
-- Planowane rozszerzenia:
-- obsługa formularza (backend / API)
-- zapis zgłoszeń do bazy danych
-- walidacja formularza
-- wyszukiwanie i filtrowanie absolwentów
-- panel administratora
-- integracja z e-mail (potwierdzenia zapisu)
+- Frontend MVP in progress.
+- Planned enhancements:
+- Backend / API for form submissions
+- Database storage of registrations
+- Form validation
+- Alumni search and filtering
+- Admin panel
+- Email notifications for successful registrations

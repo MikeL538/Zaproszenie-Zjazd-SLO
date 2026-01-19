@@ -29,8 +29,11 @@ async function saveGuest(guestName, guestSurname, eMail, gradYear, addInfo) {
 const btnSubmit = document.querySelector("#btnSubmit");
 btnSubmit.addEventListener("click", (e) => {
   e.preventDefault();
-  const guestName = document.querySelector("#name").value.trim();
-  const guestSurname = document.querySelector("#surname").value.trim();
+  const guestName = document.querySelector("#name").value.trim().toLowerCase();
+  const guestSurname = document
+    .querySelector("#surname")
+    .value.trim()
+    .toLowerCase();
   const email = document.querySelector("#email");
   const year = document.querySelector("#year").value.trim();
   const addInfo = document.querySelector("#addInfo").value.trim();
@@ -72,5 +75,11 @@ btnSubmit.addEventListener("click", (e) => {
 
   msg.textContent = "";
 
-  saveGuest(guestName, guestSurname, email.value.trim(), year, addInfo);
+  saveGuest(
+    guestName,
+    guestSurname,
+    email.value.trim().toLowerCase(),
+    year,
+    addInfo,
+  );
 });
