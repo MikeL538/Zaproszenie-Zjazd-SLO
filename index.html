@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
+﻿<!doctype html>
+<html lang="pl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,12 +7,10 @@
     <link rel="stylesheet" href="style.min.css" />
   </head>
   <body>
-    <!-- HERO / IMAGE -->
     <header class="hero">
-      <img src="./img/slo-Logo.png" class="hero__image" />
+      <img src="./img/slo-Logo.png" class="hero__image" alt="Logo szkoły" />
     </header>
 
-    <!-- OPIS -->
     <section class="intro">
       <h1 class="intro__title">Zjazd Absolwentów</h1>
 
@@ -32,25 +30,36 @@
       <h2 class="placeholdersTitle">Placeholder</h2>
       <ul class="placeholdersList">
         <li>
-          <img style="width: 75px; height: 75px; background-color: burlywood" />
+          <img
+            style="width: 75px; height: 75px; background-color: burlywood"
+            alt=""
+          />
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
         </li>
         <li>
-          <img style="width: 75px; height: 75px; background-color: burlywood" />
+          <img
+            style="width: 75px; height: 75px; background-color: burlywood"
+            alt=""
+          />
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
         </li>
         <li>
-          <img style="width: 75px; height: 75px; background-color: burlywood" />
+          <img
+            style="width: 75px; height: 75px; background-color: burlywood"
+            alt=""
+          />
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
         </li>
         <li>
-          <img style="width: 75px; height: 75px; background-color: burlywood" />
+          <img
+            style="width: 75px; height: 75px; background-color: burlywood"
+            alt=""
+          />
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
         </li>
       </ul>
     </section>
 
-    <!-- FORMULARZ ZAPISU -->
     <section class="registration">
       <h2 class="registration__title">Formularz zapisu</h2>
 
@@ -65,9 +74,9 @@
             minlength="3"
             maxlength="66"
             placeholder="Jan"
-            required
           />
         </div>
+
         <div class="form-group">
           <label for="surname">Nazwisko</label>
           <input
@@ -100,8 +109,6 @@
             type="number"
             id="year"
             name="year"
-            minlength="4"
-            maxlength="4"
             placeholder="2008"
             min="1950"
             max="2025"
@@ -110,7 +117,7 @@
         </div>
 
         <div class="form-group">
-          <label for="add_info">Dodatkowa informacja (opcjonalnie)</label>
+          <label for="addInfo">Dodatkowa informacja (opcjonalnie)</label>
           <textarea
             id="addInfo"
             name="add_info"
@@ -119,12 +126,68 @@
           ></textarea>
         </div>
 
-        <div><p id="msg"></p></div>
+        <div>
+          <p id="msg"></p>
+        </div>
 
         <button id="btnSubmit" type="submit" class="btn-submit">
           Zapisz się
         </button>
       </form>
+    </section>
+
+    <section class="survey">
+      <div class="survey__intro">
+        <h2 class="survey__title">Dobrowolna ankieta absolwenta</h2>
+        <p class="survey__note">
+          Uzupełnienie tej ankiety jest całkowicie dobrowolne i służy wyłącznie
+          lepszemu poznaniu ścieżek naszych absolwentów.
+        </p>
+      </div>
+
+      <form id="surveyForm" class="survey__form">
+        <div class="form-group">
+          <label for="education">Ukończone studia</label>
+          <input
+            type="text"
+            id="education"
+            name="education"
+            maxlength="100"
+            placeholder="Np. Informatyka na Politechnice Warszawskiej"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="profession">Aktualny zawód</label>
+          <input
+            type="text"
+            id="profession"
+            name="profession"
+            maxlength="100"
+            placeholder="Np. Projektant UX / Programista / Nauczyciel"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="workCountry">Kraj pracy</label>
+          <input
+            type="text"
+            id="workCountry"
+            name="work_country"
+            maxlength="66"
+            placeholder="Np. Polska, Niemcy, Norwegia"
+          />
+        </div>
+
+        <button type="submit" class="btn-submit survey__submit">
+          Wyślij odpowiedzi
+        </button>
+      </form>
+    </section>
+
+    <section class="publicData">
+      <h2>Anonimowa lista zapisanych absolwentów</h2>
+      <ul id="publicGuestsList"></ul>
     </section>
 
     <script type="module" src="./js/script.js"></script>
