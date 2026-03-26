@@ -28,35 +28,48 @@
       </section>
 
       <section class="placeholders">
-        <h2 class="placeholdersTitle">Placeholder</h2>
+        <h2 class="placeholdersTitle">Informacje</h2>
         <ul class="placeholdersList">
           <li>
-            <img
-              style="width: 75px; height: 75px; background-color: burlywood"
-              alt=""
-            />
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            <svg>
+              <use href="./img/icons.svg#calendar" />
+            </svg>
+            <div>
+              <p>09.09.2026r.</p>
+              <p>Godzina 17:00 (CET)</p>
+            </div>
           </li>
           <li>
-            <img
-              style="width: 75px; height: 75px; background-color: burlywood"
-              alt=""
-            />
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            <svg>
+              <use href="./img/icons.svg#location" />
+            </svg>
+            <div>
+              <p>Społeczne Liceum Ogólnokształcące w Żarach</p>
+              <p>ul. 11 Listopada 33</p>
+              <p>68-200 Żary</p>
+            </div>
+          </li>
+
+          <li>
+            <svg>
+              <use href="./img/icons.svg#money" />
+            </svg>
+            <div>
+              <p>Wpisowe: XX zł</p>
+              <p>Termin wpłaty: 31.08.2026</p>
+              <p>Tytuł - imię i nazwisko</p>
+              <p>Nr. konta:</p>
+              <p>0000000000000000</p>
+            </div>
           </li>
           <li>
-            <img
-              style="width: 75px; height: 75px; background-color: burlywood"
-              alt=""
-            />
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-          </li>
-          <li>
-            <img
-              style="width: 75px; height: 75px; background-color: burlywood"
-              alt=""
-            />
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            <svg>
+              <use href="./img/icons.svg#party" />
+            </svg>
+            <div>
+              <p>Oferujemy to i tamto</p>
+              <p>Przyjdziesz to zobaczysz</p>
+            </div>
           </li>
         </ul>
       </section>
@@ -173,7 +186,7 @@
               />
             </div>
             <div>
-              <p id="msg"></p>
+              <p id="msg" aria-live="polite" role="status"></p>
             </div>
 
             <div class="consent">
@@ -207,11 +220,6 @@
           </div>
         </section>
       </form>
-
-      <section class="publicData">
-        <h2>Anonimowa lista zapisanych absolwentów</h2>
-        <ul id="publicGuestsList"></ul>
-      </section>
     </main>
 
     <div

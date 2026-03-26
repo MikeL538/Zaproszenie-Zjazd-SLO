@@ -36,10 +36,6 @@
     margin-bottom: 46px;
     padding: 24px 22px;
 
-    &Title {
-      font-size: 1.24rem;
-    }
-
     &List {
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 12px;
@@ -57,8 +53,7 @@
   }
 
   .registration,
-  .survey,
-  .publicData {
+  .survey {
     max-width: 520px;
     padding: 22px 18px;
   }
@@ -104,20 +99,5 @@
   .btn-submit {
     font-size: 0.88rem;
     min-height: 42px;
-  }
-
-  .publicData {
-    h2 {
-      font-size: 1.2rem;
-      margin-bottom: 14px;
-    }
-  }
-
-  #publicGuestsList {
-    gap: 10px;
-
-    li {
-      padding: 11px 13px;
-    }
   }
 }

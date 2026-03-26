@@ -1,4 +1,4 @@
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+﻿import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const supabaseUrl = "https://fmesivvwhqitrmlbwcdb.supabase.co";
 const supabaseKey = "sb_publishable_kSmSt52th8XAYGbce3CtwA_uIdN8fKL";
@@ -7,12 +7,73 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 
 const form = document.querySelector("#form");
 const msg = document.querySelector("#msg");
-const publicGuestsList = document.querySelector("#publicGuestsList");
 const termsConsent = document.querySelector("#termsConsent");
 const termsTrigger = document.querySelector("#termsTrigger");
 const termsModal = document.querySelector("#termsModal");
 const termsClose = document.querySelector("#termsClose");
+const btnSubmit = document.querySelector("#btnSubmit");
 let lastFocusedElement = null;
+
+const VALIDATION_ERRORS = {
+  nameTooShort: "Imię musi składać się z co najmniej 3 znaków.",
+  nameTooLong: "Imię jest za długie.",
+  surnameTooShort: "Nazwisko musi składać się z co najmniej 3 znaków.",
+  surnameTooLong: "Nazwisko jest za długie.",
+  invalidEmail: "Podaj prawidłowy adres e-mail.",
+  invalidYear: "Rok ukończenia musi być między 1995 a 2026.",
+  addInfoTooLong: "Maksymalna długość dodatkowych informacji to 255 znaków.",
+  termsRequired: "Aby wysłać formularz, zaakceptuj regulamin.",
+};
+
+function setMessage(text = "", color = "red") {
+  if (!(msg instanceof HTMLParagraphElement)) return;
+
+  msg.style.color = color;
+  msg.textContent = text;
+}
+
+function validateFormData({
+  guestName,
+  guestSurname,
+  emailInput,
+  year,
+  addInfo,
+  termsConsent,
+}) {
+  if (guestName.length < 3) {
+    return VALIDATION_ERRORS.nameTooShort;
+  }
+
+  if (guestName.length > 66) {
+    return VALIDATION_ERRORS.nameTooLong;
+  }
+
+  if (guestSurname.length < 3) {
+    return VALIDATION_ERRORS.surnameTooShort;
+  }
+
+  if (guestSurname.length > 66) {
+    return VALIDATION_ERRORS.surnameTooLong;
+  }
+
+  if (!emailInput.checkValidity()) {
+    return VALIDATION_ERRORS.invalidEmail;
+  }
+
+  if (year < 1995 || year > 2026 || Number.isNaN(year)) {
+    return VALIDATION_ERRORS.invalidYear;
+  }
+
+  if (addInfo.length > 255) {
+    return VALIDATION_ERRORS.addInfoTooLong;
+  }
+
+  if (!termsConsent.checked) {
+    return VALIDATION_ERRORS.termsRequired;
+  }
+
+  return null;
+}
 
 function openTermsModal() {
   if (!(termsModal instanceof HTMLDivElement)) return;
@@ -67,52 +128,14 @@ async function saveGuest(
 
   if (error) {
     console.error("Błąd przy zapisywaniu:", error);
-    if (msg) {
-      msg.textContent = "Błąd przy zapisywaniu formularza.";
-    }
+    setMessage("Błąd przy zapisywaniu formularza.");
     return false;
   }
 
   return true;
 }
 
-async function loadPublicGuests() {
-  const { data, error } = await supabase.rpc("get_public_guests");
-
-  if (error) {
-    console.error("Błąd pobierania publicznych danych:", error);
-    return [];
-  }
-
-  return data ?? [];
-}
-
-async function renderPublicGuests() {
-  if (!publicGuestsList) return;
-
-  const guests = await loadPublicGuests();
-
-  publicGuestsList.innerHTML =
-    "<li>Rok ukończenia - Inicjały - Edukacja - Profesja - Kraj pracy ";
-
-  if (!guests.length) {
-    const li = document.createElement("li");
-    li.textContent = "Brak zapisanych osób.";
-    publicGuestsList.appendChild(li);
-    return;
-  }
-
-  guests.forEach((guest) => {
-    const li = document.createElement("li");
-    if (!guest.school) guest.school = "—";
-    if (!guest.profession) guest.profession = "—";
-    if (!guest.work_country) guest.work_country = "—";
-    li.textContent = `${guest.graduation} - ${guest.display_name} - ${guest.school} - ${guest.profession} - ${guest.work_country}`;
-    publicGuestsList.appendChild(li);
-  });
-}
-
-if (form) {
+if (form instanceof HTMLFormElement) {
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -132,10 +155,19 @@ if (form) {
       !(emailInput instanceof HTMLInputElement) ||
       !(yearInput instanceof HTMLInputElement) ||
       !(addInfoInput instanceof HTMLTextAreaElement) ||
+      !(schoolInput instanceof HTMLInputElement) ||
+      !(professionInput instanceof HTMLInputElement) ||
+      !(workCountryInput instanceof HTMLInputElement) ||
+      !(websiteField instanceof HTMLInputElement) ||
       !(termsConsent instanceof HTMLInputElement)
     ) {
-      if (websiteField.value !== "" || !websiteField) return;
       return;
+    }
+
+    if (websiteField.value !== "") return;
+
+    if (btnSubmit instanceof HTMLButtonElement) {
+      btnSubmit.disabled = true;
     }
 
     const guestName = nameInput.value.trim().toLowerCase();
@@ -147,93 +179,58 @@ if (form) {
     const profession = professionInput.value.trim();
     const workCountry = workCountryInput.value.trim();
 
-    if (msg) {
-      msg.style.color = "red";
-      msg.textContent = "";
-    }
+    setMessage();
 
-    if (guestName.length < 3) {
-      if (msg) {
-        msg.textContent =
-          "Imię musi składać się z co najmniej 3 znaków.";
-      }
-      return;
-    }
-
-    if (guestName.length > 66) {
-      if (msg) {
-        msg.textContent = "Imię jest za długie.";
-      }
-      return;
-    }
-
-    if (guestSurname.length < 3) {
-      if (msg) {
-        msg.textContent =
-          "Nazwisko musi składać się z co najmniej 3 znaków.";
-      }
-      return;
-    }
-
-    if (guestSurname.length > 66) {
-      if (msg) {
-        msg.textContent = "Nazwisko jest za długie.";
-      }
-      return;
-    }
-
-    if (!emailInput.checkValidity()) {
-      if (msg) {
-        msg.textContent = "Podaj prawidłowy adres e-mail.";
-      }
-      return;
-    }
-
-    if (year < 1995 || year > 2026 || Number.isNaN(year)) {
-      if (msg) {
-        msg.textContent =
-          "Rok ukończenia musi być między 1995 a 2026.";
-      }
-      return;
-    }
-
-    if (addInfo.length > 255) {
-      if (msg) {
-        msg.textContent =
-          "Maksymalna długość dodatkowych informacji to 255 znaków.";
-      }
-      return;
-    }
-
-    if (!termsConsent.checked) {
-      if (msg) {
-        msg.textContent =
-          "Aby wysłać formularz, zaakceptuj regulamin.";
-      }
-      termsConsent.focus();
-      return;
-    }
-
-    const saved = await saveGuest(
+    const validationError = validateFormData({
       guestName,
       guestSurname,
-      email,
+      emailInput,
       year,
       addInfo,
-      school,
-      profession,
-      workCountry,
-    );
+      termsConsent,
+    });
+
+    if (validationError) {
+      setMessage(validationError);
+
+      if (btnSubmit instanceof HTMLButtonElement) {
+        btnSubmit.disabled = false;
+      }
+
+      if (!termsConsent.checked) {
+        termsConsent.focus();
+      }
+
+      return;
+    }
+
+    let saved = false;
+
+    try {
+      saved = await saveGuest(
+        guestName,
+        guestSurname,
+        email,
+        year,
+        addInfo,
+        school,
+        profession,
+        workCountry,
+      );
+    } catch (error) {
+      console.log(error);
+      setMessage(error);
+      return;
+    } finally {
+      if (btnSubmit instanceof HTMLButtonElement) {
+        btnSubmit.disabled = false;
+      }
+    }
 
     if (!saved) return;
 
-    if (msg) {
-      msg.style.color = "green";
-      msg.textContent = "Zapisano pomyślnie.";
-    }
-
+    setMessage("Zapisano pomyślnie.", "green");
     form.reset();
-    await renderPublicGuests();
   });
 }
 
@@ -264,5 +261,3 @@ document.addEventListener("keydown", (event) => {
     closeTermsModal();
   }
 });
-
-renderPublicGuests();
