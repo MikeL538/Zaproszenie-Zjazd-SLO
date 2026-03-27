@@ -1,86 +1,97 @@
-# SLO Alumni Reunion – In Progress
+# SLO Alumni Reunion Invitation
 
-A website for the SLO alumni reunion, allowing visitors to learn about the event and register via a sign-up form.
+Public-facing event website and registration form built for a real school alumni reunion. The project is used as an informational landing page and submission flow for graduates, while a separate authenticated admin panel is used by organizers to review registrations.
 
-This project serves as an **informational and registration prototype** and forms a foundation for future development (e.g., backend integration, data validation, alumni search).
+The interface is written in Polish because it serves a real local audience, but this README describes the project in English for portfolio and recruiter review.
 
----
+## Live Project
 
-## GitHub Pages / Live Preview
+Public website:
 
-The site is available online at:
+<https://mikel538.github.io/Zaproszenie-Zjazd-SLO/>
 
-👉 **https://mikel538.github.io/Zaproszenie-Zjazd-SLO/**
+Related admin panel:
 
----
+<https://mikel538.github.io/Zaproszenie-Zjazd-SLO-Admin/>
+
+Demo credentials for the admin panel:
+
+- Email: `test`
+- Password: `test`
+
+## Project Purpose
+
+- Publish clear reunion details for alumni
+- Collect registrations through a simple low-friction form
+- Capture optional background data about alumni career and education paths
+- Separate public registration from protected administrative access
 
 ## Features
 
-- Hero section with event graphics
-- Event description and purpose of the alumni reunion
-- Informational sections (placeholders for future content)
-- Participant registration form:
-  - First name and last name
-  - Email address
-  - Graduation year
-  - Additional information (optional)
-- Prototype of alumni search section (placeholder)
+- Responsive single-page event website
+- Event information blocks for date, venue, fee and attendance details
+- Registration form with required attendee data:
+  - first name
+  - surname
+  - email
+  - graduation year
+  - optional extra note
+- Optional alumni survey fields:
+  - completed studies
+  - current profession
+  - work country
+- Client-side validation before submission
+- Required consent checkbox with modal terms / GDPR information
+- Basic anti-spam honeypot field
+- Direct Supabase insert from the frontend
 
----
+## Architecture
 
-## Demo / Admin Panel
+This repository contains the public registration website only.
 
-For portfolio and presentation purposes, a **demo admin panel** is available to showcase registered participants.
+The administrative side of the system lives in a separate repository and is intentionally split from the public frontend. That admin app uses Supabase Auth and Row Level Security to protect access to real submissions.
 
-**Admin Panel (Demo Mode)**  
-👉 **https://mikel538.github.io/Zaproszenie-Zjazd-SLO-Admin/**
+In this public project:
 
-**Demo credentials:**
+- the website is static and deployed on GitHub Pages
+- form submissions are sent from vanilla JavaScript to Supabase
+- the frontend uses a public Supabase key, while data protection is handled in the database and admin layer
 
-- **Email:** `test`
-- **Password:** `test`
-
-> Demo data is **fictional** and intended solely to demonstrate functionality. Real submissions are protected and only accessible to invited accounts via Supabase.
-
----
-
-## Technologies
+## Tech Stack
 
 - HTML5
-- CSS3 (`style.min.css`)
-- Responsive layout (viewport meta)
-- Vanilla JavaScript (no frameworks)
-- SQL Supabase
+- SCSS/CSS
+- Vanilla JavaScript (ES Modules)
+- Supabase
+- GitHub Pages
 
----
+## Local Run
 
-## Project Structure
-
-- `index.html`
-- `style.min.css`
-- `./js/script.js`
-- `./img/`
-- `README.md`
-
----
-
-## Running the Project Locally
+No build process is required to preview the current version.
 
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/zjazd-absolwentow-slo.git
+git clone https://github.com/MikeL538/Zaproszenie-Zjazd-SLO.git
 ```
 
-2. Open index.html in a web browser (double-click or via a local server, e.g., Live Server in VS Code).
+2. Open `index.html` in a browser or run it with a simple local server.
 
-## Project Status
+## Repository Structure
 
-- Frontend MVP in progress.
-- Planned enhancements:
-- Backend / API for form submissions
-- Database storage of registrations
-- Form validation
-- Alumni search and filtering
-- Admin panel
-- Email notifications for successful registrations
+```text
+.
+|- index.html
+|- js/
+|  |- script.js
+|- img/
+|- style/
+|- style.scss
+|- style.min.css
+`- readme.md
+```
+
+## Notes
+
+- This is a real project prepared for a school event, not a fictional landing page.
+- The public form stores data in Supabase, while secure record management is handled in the separate admin application.
