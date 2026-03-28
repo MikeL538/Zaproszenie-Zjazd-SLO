@@ -1,8 +1,8 @@
 # SLO Alumni Reunion Invitation
 
-Public-facing event website and registration form built for a real school alumni reunion. The project is used as an informational landing page and submission flow for graduates, while a separate authenticated admin panel is used by organizers to review registrations.
+Public-facing event website and registration flow built for a real school alumni reunion. The project is part of a small fullstack system: this repository handles the public experience, while a separate authenticated admin panel is used to review registrations stored in Supabase.
 
-The interface is written in Polish because it serves a real local audience, but this README describes the project in English for portfolio and recruiter review.
+The UI is written in Polish because it serves a real local audience. This README is written in English for portfolio and recruiter review.
 
 ## Live Project
 
@@ -19,48 +19,58 @@ Demo credentials for the admin panel:
 - Email: `test`
 - Password: `test`
 
-## Project Purpose
+## Portfolio Context
 
-- Publish clear reunion details for alumni
-- Collect registrations through a simple low-friction form
-- Capture optional background data about alumni career and education paths
-- Separate public registration from protected administrative access
+This project represents how I approach small real-world product work as a junior fullstack developer:
 
-## Features
+- building a complete user flow instead of a static mockup
+- connecting a public frontend to a real backend service
+- separating public and administrative responsibilities into different apps
+- treating validation, consent and data handling as part of the implementation, not as afterthoughts
 
-- Responsive single-page event website
-- Event information blocks for date, venue, fee and attendance details
-- Registration form with required attendee data:
-  - first name
-  - surname
-  - email
-  - graduation year
-  - optional extra note
-- Optional alumni survey fields:
-  - completed studies
-  - current profession
-  - work country
+## What This Project Does
+
+- publishes reunion details in a simple responsive layout
+- collects attendee registrations through a low-friction form
+- stores submissions in Supabase
+- captures optional background data about alumni education and work paths
+- passes management of submitted data to a separate protected admin application
+
+## Key Features
+
+- Responsive landing page for a real event
+- Registration form with required attendee data: first name, surname, email, graduation year and optional note
+- Optional alumni survey fields: completed studies, profession and work country
 - Client-side validation before submission
-- Required consent checkbox with modal terms / GDPR information
-- Basic anti-spam honeypot field
-- Direct Supabase insert from the frontend
+- Consent checkbox with modal terms / GDPR information
+- Honeypot anti-spam field
+- Direct insert to Supabase from vanilla JavaScript
+- Static deployment through GitHub Pages
 
 ## Architecture
 
-This repository contains the public registration website only.
+This repository contains only the public-facing side of the system.
 
-The administrative side of the system lives in a separate repository and is intentionally split from the public frontend. That admin app uses Supabase Auth and Row Level Security to protect access to real submissions.
+The full workflow is:
 
-In this public project:
+1. A visitor opens the public reunion website.
+2. The form validates required fields in the browser.
+3. Valid submissions are sent to Supabase.
+4. Organizers review the data in a separate authenticated admin panel.
 
-- the website is static and deployed on GitHub Pages
-- form submissions are sent from vanilla JavaScript to Supabase
-- the frontend uses a public Supabase key, while data protection is handled in the database and admin layer
+This split was intentional. The public website stays simple, while administrative access and data protection are handled separately in the admin repository and database layer.
+
+## Engineering Notes
+
+- The frontend uses a public Supabase key, which is expected for browser-based access.
+- Security does not rely on hiding frontend code.
+- Data protection is enforced in Supabase through database permissions and admin-side authentication.
+- The project was built for practical use, not only as a portfolio exercise.
 
 ## Tech Stack
 
 - HTML5
-- SCSS/CSS
+- SCSS / CSS
 - Vanilla JavaScript (ES Modules)
 - Supabase
 - GitHub Pages
@@ -83,7 +93,7 @@ git clone https://github.com/MikeL538/Zaproszenie-Zjazd-SLO.git
 .
 |- index.html
 |- js/
-|  |- script.js
+|  `- script.js
 |- img/
 |- style/
 |- style.scss
@@ -91,7 +101,8 @@ git clone https://github.com/MikeL538/Zaproszenie-Zjazd-SLO.git
 `- readme.md
 ```
 
-## Notes
+## Why It Matters
 
-- This is a real project prepared for a school event, not a fictional landing page.
-- The public form stores data in Supabase, while secure record management is handled in the separate admin application.
+- It is a real project prepared for an actual event, not a fictional landing page.
+- It shows end-to-end thinking across frontend UX, validation, backend integration and admin workflow.
+- It demonstrates that even a small vanilla JavaScript project can be structured like a practical product feature.
