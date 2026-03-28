@@ -75,34 +75,6 @@ function validateFormData({
   return null;
 }
 
-function openTermsModal() {
-  if (!(termsModal instanceof HTMLDivElement)) return;
-
-  lastFocusedElement =
-    document.activeElement instanceof HTMLElement
-      ? document.activeElement
-      : null;
-  termsModal.hidden = false;
-  termsModal.setAttribute("aria-hidden", "false");
-  document.body.classList.add("modal-open");
-
-  if (termsClose instanceof HTMLButtonElement) {
-    termsClose.focus();
-  }
-}
-
-function closeTermsModal() {
-  if (!(termsModal instanceof HTMLDivElement)) return;
-
-  termsModal.hidden = true;
-  termsModal.setAttribute("aria-hidden", "true");
-  document.body.classList.remove("modal-open");
-
-  if (lastFocusedElement instanceof HTMLElement) {
-    lastFocusedElement.focus();
-  }
-}
-
 async function saveGuest(
   guestName,
   guestSurname,
@@ -135,6 +107,9 @@ async function saveGuest(
   return true;
 }
 
+// ========================
+// ===== FORM =============
+// ========================
 if (form instanceof HTMLFormElement) {
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -232,6 +207,37 @@ if (form instanceof HTMLFormElement) {
     setMessage("Zapisano pomyślnie.", "green");
     form.reset();
   });
+}
+
+// ========================
+// ===== Termas ===========
+// ========================
+function openTermsModal() {
+  if (!(termsModal instanceof HTMLDivElement)) return;
+
+  lastFocusedElement =
+    document.activeElement instanceof HTMLElement
+      ? document.activeElement
+      : null;
+  termsModal.hidden = false;
+  termsModal.setAttribute("aria-hidden", "false");
+  document.body.classList.add("modal-open");
+
+  if (termsClose instanceof HTMLButtonElement) {
+    termsClose.focus();
+  }
+}
+
+function closeTermsModal() {
+  if (!(termsModal instanceof HTMLDivElement)) return;
+
+  termsModal.hidden = true;
+  termsModal.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("modal-open");
+
+  if (lastFocusedElement instanceof HTMLElement) {
+    lastFocusedElement.focus();
+  }
 }
 
 if (termsTrigger instanceof HTMLButtonElement) {
