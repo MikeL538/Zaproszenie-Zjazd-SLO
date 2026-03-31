@@ -19,7 +19,7 @@ const VALIDATION_ERRORS = {
   nameTooLong: "Imię jest za długie.",
   surnameTooShort: "Nazwisko musi składać się z co najmniej 3 znaków.",
   surnameTooLong: "Nazwisko jest za długie.",
-  invalidEmail: "Podaj prawidłowy adres e-mail.",
+  invalidContact: "Podaj prawidłowy kontakt.",
   invalidYear: "Rok ukończenia musi być między 1995 a 2026.",
   addInfoTooLong: "Maksymalna długość dodatkowych informacji to 255 znaków.",
   termsRequired: "Aby wysłać formularz, zaakceptuj regulamin.",
@@ -35,7 +35,7 @@ function setMessage(text = "", color = "red") {
 function validateFormData({
   guestName,
   guestSurname,
-  emailInput,
+  contactInput,
   year,
   addInfo,
   termsConsent,
@@ -56,8 +56,8 @@ function validateFormData({
     return VALIDATION_ERRORS.surnameTooLong;
   }
 
-  if (!emailInput.checkValidity()) {
-    return VALIDATION_ERRORS.invalidEmail;
+  if (!contactInput.checkValidity()) {
+    return VALIDATION_ERRORS.invalidContact;
   }
 
   if (year < 1995 || year > 2026 || Number.isNaN(year)) {
@@ -78,7 +78,7 @@ function validateFormData({
 async function saveGuest(
   guestName,
   guestSurname,
-  email,
+  contact,
   gradYear,
   addInfo,
   school,
@@ -89,7 +89,7 @@ async function saveGuest(
     {
       name: guestName,
       surname: guestSurname,
-      e_mail: email,
+      contact: contact,
       graduation: gradYear,
       add_info: addInfo,
       school: school,
@@ -116,7 +116,7 @@ if (form instanceof HTMLFormElement) {
 
     const nameInput = document.querySelector("#name");
     const surnameInput = document.querySelector("#surname");
-    const emailInput = document.querySelector("#email");
+    const contactInput = document.querySelector("#contact");
     const yearInput = document.querySelector("#year");
     const addInfoInput = document.querySelector("#addInfo");
     const schoolInput = document.querySelector("#school");
@@ -127,7 +127,7 @@ if (form instanceof HTMLFormElement) {
     if (
       !(nameInput instanceof HTMLInputElement) ||
       !(surnameInput instanceof HTMLInputElement) ||
-      !(emailInput instanceof HTMLInputElement) ||
+      !(contactInput instanceof HTMLInputElement) ||
       !(yearInput instanceof HTMLInputElement) ||
       !(addInfoInput instanceof HTMLTextAreaElement) ||
       !(schoolInput instanceof HTMLInputElement) ||
@@ -147,7 +147,7 @@ if (form instanceof HTMLFormElement) {
 
     const guestName = nameInput.value.trim().toLowerCase();
     const guestSurname = surnameInput.value.trim().toLowerCase();
-    const email = emailInput.value.trim().toLowerCase();
+    const contact = contactInput.value.trim().toLowerCase();
     const year = Number(yearInput.value.trim());
     const addInfo = addInfoInput.value.trim();
     const school = schoolInput.value.trim();
@@ -159,7 +159,7 @@ if (form instanceof HTMLFormElement) {
     const validationError = validateFormData({
       guestName,
       guestSurname,
-      emailInput,
+      contactInput,
       year,
       addInfo,
       termsConsent,
@@ -185,7 +185,7 @@ if (form instanceof HTMLFormElement) {
       saved = await saveGuest(
         guestName,
         guestSurname,
-        email,
+        contact,
         year,
         addInfo,
         school,
