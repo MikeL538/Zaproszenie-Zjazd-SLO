@@ -1,4 +1,4 @@
-.placeholders {
+.details {
   background: var(--surface-soft);
   border: 1px solid rgba(111, 120, 116, 0.14);
   border-radius: 26px;
@@ -59,7 +59,7 @@
 
         > p {
           color: var(--text-muted);
-          font-size: 0.9rem;
+          font-size: 0.85rem;
           line-height: 1.55;
           max-width: 24ch;
           text-align: center;
@@ -70,6 +70,7 @@
   }
 }
 
-.placeholdersFormGroupSearch {
+.detailsFormGroupSearch {
   margin-top: 8px;
 }
+

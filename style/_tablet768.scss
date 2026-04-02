@@ -1,17 +1,15 @@
-﻿@media (min-width: 768px) {
+@media (min-width: 768px) {
   body {
-    font-size: 13px;
+    font-size: 15px;
     padding: 24px 20px 52px;
   }
 
   section,
-  .placeholders {
+  .details {
     max-width: 650px;
   }
 
   .hero {
-    margin-bottom: 44px;
-
     &__image {
       width: min(100%, 230px);
     }
@@ -26,12 +24,12 @@
     }
 
     &__text {
-      font-size: 0.9rem;
+      font-size: 1rem;
       max-width: 48ch;
     }
   }
 
-  .placeholders {
+  .details {
     gap: 18px;
     margin-bottom: 46px;
     padding: 24px 22px;
@@ -101,3 +99,4 @@
     min-height: 42px;
   }
 }
+

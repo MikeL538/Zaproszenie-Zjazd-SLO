@@ -1,17 +1,18 @@
-﻿@media (min-width: 414px) {
+@media (min-width: 414px) {
   body {
     padding-inline: 16px;
   }
 
   section,
-  .placeholders {
+  .details {
     max-width: 420px;
   }
 
   .registration,
   .survey,
-  .placeholders {
+  .details {
     padding-inline: 18px;
   }
 }
+
 
