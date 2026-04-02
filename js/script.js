@@ -1,9 +1,6 @@
-﻿import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
-
 const supabaseUrl = "https://fmesivvwhqitrmlbwcdb.supabase.co";
 const supabaseKey = "sb_publishable_kSmSt52th8XAYGbce3CtwA_uIdN8fKL";
-
-const supabase = createClient(supabaseUrl, supabaseKey);
+const submitGuestUrl = `${supabaseUrl}/functions/v1/submit-guest`;
 
 const form = document.querySelector("#form");
 const msg = document.querySelector("#msg");
@@ -23,6 +20,7 @@ const VALIDATION_ERRORS = {
   invalidYear: "Rok ukończenia musi być między 1995 a 2026.",
   addInfoTooLong: "Maksymalna długość dodatkowych informacji to 255 znaków.",
   termsRequired: "Aby wysłać formularz, zaakceptuj regulamin.",
+  captchaRequired: "Potwierdź, że nie jesteś botem.",
 };
 
 function setMessage(text = "", color = "red") {
@@ -84,23 +82,38 @@ async function saveGuest(
   school,
   profession,
   workCountry,
+  captchaToken,
 ) {
-  const { error } = await supabase.from("guest_data").insert([
-    {
-      name: guestName,
-      surname: guestSurname,
-      contact: contact,
-      graduation: gradYear,
-      add_info: addInfo,
-      school: school,
-      profession: profession,
-      work_country: workCountry,
+  const response = await fetch(submitGuestUrl, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      apikey: supabaseKey,
     },
-  ]);
+    body: JSON.stringify({
+      guestName,
+      guestSurname,
+      contact,
+      year: gradYear,
+      addInfo,
+      school,
+      profession,
+      workCountry,
+      captchaToken,
+    }),
+  });
 
-  if (error) {
-    console.error("Błąd przy zapisywaniu:", error);
-    setMessage("Błąd przy zapisywaniu formularza.");
+  let data = null;
+
+  try {
+    data = await response.json();
+  } catch {
+    data = null;
+  }
+
+  if (!response.ok) {
+    console.error("Błąd przy zapisywaniu:", data);
+    setMessage(data?.error || "Błąd przy zapisywaniu formularza.");
     return false;
   }
 
@@ -123,6 +136,9 @@ if (form instanceof HTMLFormElement) {
     const professionInput = document.querySelector("#profession");
     const workCountryInput = document.querySelector("#workCountry");
     const websiteField = document.querySelector("#websiteField");
+    const captchaInput = document.querySelector(
+      '[name="cf-turnstile-response"]',
+    );
 
     if (
       !(nameInput instanceof HTMLInputElement) ||
@@ -134,6 +150,7 @@ if (form instanceof HTMLFormElement) {
       !(professionInput instanceof HTMLInputElement) ||
       !(workCountryInput instanceof HTMLInputElement) ||
       !(websiteField instanceof HTMLInputElement) ||
+      !(captchaInput instanceof HTMLInputElement) ||
       !(termsConsent instanceof HTMLInputElement)
     ) {
       return;
@@ -153,6 +170,7 @@ if (form instanceof HTMLFormElement) {
     const school = schoolInput.value.trim();
     const profession = professionInput.value.trim();
     const workCountry = workCountryInput.value.trim();
+    const captchaToken = captchaInput.value.trim();
 
     setMessage();
 
@@ -179,6 +197,16 @@ if (form instanceof HTMLFormElement) {
       return;
     }
 
+    if (!captchaToken) {
+      setMessage(VALIDATION_ERRORS.captchaRequired);
+
+      if (btnSubmit instanceof HTMLButtonElement) {
+        btnSubmit.disabled = false;
+      }
+
+      return;
+    }
+
     let saved = false;
 
     try {
@@ -191,6 +219,7 @@ if (form instanceof HTMLFormElement) {
         school,
         profession,
         workCountry,
+        captchaToken,
       );
     } catch (error) {
       console.log(error);
@@ -206,6 +235,10 @@ if (form instanceof HTMLFormElement) {
 
     setMessage("Zapisano pomyślnie.", "green");
     form.reset();
+
+    if (window.turnstile && typeof window.turnstile.reset === "function") {
+      window.turnstile.reset();
+    }
   });
 }
 
