@@ -243,7 +243,7 @@ if (form instanceof HTMLFormElement) {
 }
 
 // ========================
-// ===== Termas ===========
+// ===== Terms ============
 // ========================
 function openTermsModal() {
   if (!(termsModal instanceof HTMLDivElement)) return;

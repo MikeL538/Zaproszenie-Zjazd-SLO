@@ -1,18 +1,12 @@
-@media (min-width: 768px) {
+﻿@media (min-width: 768px) {
   body {
     font-size: 15px;
-    padding: 24px 20px 52px;
+    padding: 36px 32px;
   }
 
   section,
   .details {
     max-width: 650px;
-  }
-
-  .hero {
-    &__image {
-      width: min(100%, 230px);
-    }
   }
 
   .intro {
@@ -35,17 +29,11 @@
     padding: 24px 22px;
 
     &List {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 12px;
 
       > li {
-        grid-template-columns: 56px 1fr;
         min-height: 98px;
         padding: 10px 12px;
-      }
-
-      > li > p {
-        font-size: 0.86rem;
       }
     }
   }

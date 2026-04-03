@@ -7,229 +7,227 @@
     <link rel="stylesheet" href="style.min.css" />
   </head>
   <body>
-    <!-- <header class="hero">
-      <img src="./img/slo-Logo.svg" alt="Herb Żary" />
-    </header> -->
-
     <main>
-      <section class="intro">
-        <img class="intro__image" src="./img/slo-Logo.svg" alt="Herb Żary" />
-        <h1 class="intro__title">
-          Zjazd Absolwentów <br />Społecznego Liceum<br />Ogólnokształcącego
-        </h1>
+      <div class="container">
+        <section class="intro">
+          <img class="intro__image" src="./img/slo-Logo.svg" alt="Herb Żary" />
+          <h1 class="intro__title">
+            Zjazd Absolwentów <br />Społecznego Liceum<br />Ogólnokształcącego
+          </h1>
 
-        <p class="intro__text">
-          Serdecznie zapraszamy na zjazd absolwentów naszej szkoły. To wyjątkowa
-          okazja, aby po latach spotkać się ponownie, powspominać dawne czasy i
-          nawiązać stare kontakty.
-        </p>
+          <p class="intro__text">
+            Serdecznie zapraszamy na zjazd absolwentów naszej szkoły. To
+            wyjątkowa okazja, aby po latach spotkać się ponownie, powspominać
+            dawne czasy i nawiązać stare kontakty.
+          </p>
 
-        <p class="intro__text">
-          Spotkanie odbędzie się w przyjaznej atmosferze, z muzyką,
-          poczęstunkiem i dużą dawką wspomnień.
-        </p>
-      </section>
+          <p class="intro__text">
+            Spotkanie odbędzie się w przyjaznej atmosferze, z muzyką,
+            poczęstunkiem i dużą dawką wspomnień.
+          </p>
+        </section>
 
-      <section class="details">
-        <h2 class="detailsTitle">Informacje</h2>
-        <ul class="detailsList">
-          <li>
-            <svg>
-              <use href="./img/icons.svg#calendar" />
-            </svg>
-            <div>
-              <p>26.09.2026r.</p>
-              <p>Godzina 17:00 (CET)</p>
+        <section class="details">
+          <h2 class="detailsTitle">Informacje</h2>
+          <ul class="detailsList">
+            <li>
+              <svg>
+                <use href="./img/icons.svg#calendar" />
+              </svg>
+              <div>
+                <p>26.09.2026r.</p>
+                <p>Godzina 17:00 (CET)</p>
+              </div>
+            </li>
+            <li>
+              <svg>
+                <use href="./img/icons.svg#location" />
+              </svg>
+              <div>
+                <p>Społeczne Liceum Ogólnokształcące w Żarach</p>
+                <p>ul. 11 Listopada 33</p>
+                <p>68-200 Żary</p>
+              </div>
+            </li>
+
+            <li>
+              <svg>
+                <use href="./img/icons.svg#money" />
+              </svg>
+              <div>
+                <p>Wpisowe: 220(?)zł</p>
+                <p>Do: 31.08.2026(?)</p>
+                <p>Tytuł przelewu: imię i nazwisko <b>osoby zapisanej</b></p>
+                <p>Nr. konta bankowego:</p>
+                <p><b>XX XXXX XXXX XXXX XXXX XXXX XXXX</b></p>
+              </div>
+            </li>
+            <li>
+              <svg>
+                <use href="./img/icons.svg#party" />
+              </svg>
+              <div>
+                <p>
+                  Oferujemy salę do zabawy, muzykę, przekąski, napoje, atrakcje
+                  oraz miłą atmosferę!
+                </p>
+              </div>
+            </li>
+          </ul>
+        </section>
+
+        <form id="form">
+          <section class="registration">
+            <h2 class="registration__title">Formularz zapisu</h2>
+
+            <div class="registration__form">
+              <div class="form-group">
+                <label for="name">Imię</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  minlength="3"
+                  maxlength="66"
+                  placeholder="Jan"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="surname">Nazwisko</label>
+                <input
+                  type="text"
+                  id="surname"
+                  name="surname"
+                  minlength="3"
+                  maxlength="66"
+                  placeholder="Kowalski"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="contact">Kontakt</label>
+                <input
+                  type="text"
+                  id="contact"
+                  name="contact"
+                  maxlength="66"
+                  placeholder="kowalski@email.com lub nr tel."
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="year">Rok ukończenia</label>
+                <input
+                  type="number"
+                  id="year"
+                  name="year"
+                  placeholder="2008"
+                  min="1995"
+                  max="2026"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="addInfo">Dodatkowa informacja (opcjonalnie)</label>
+                <textarea
+                  id="addInfo"
+                  name="add_info"
+                  maxlength="255"
+                  placeholder="Np. osoba towarzysząca"
+                ></textarea>
+              </div>
             </div>
-          </li>
-          <li>
-            <svg>
-              <use href="./img/icons.svg#location" />
-            </svg>
-            <div>
-              <p>Społeczne Liceum Ogólnokształcące w Żarach</p>
-              <p>ul. 11 Listopada 33</p>
-              <p>68-200 Żary</p>
-            </div>
-          </li>
+          </section>
 
-          <li>
-            <svg>
-              <use href="./img/icons.svg#money" />
-            </svg>
-            <div>
-              <p>Wpisowe: 220(?)zł</p>
-              <p>Do: 31.08.2026(?)</p>
-              <p>Tytuł przelewu: imię i nazwisko <b>osoby zapisanej</b></p>
-              <p>Nr. konta bankowego:</p>
-              <p><b>XX XXXX XXXX XXXX XXXX XXXX XXXX</b></p>
-            </div>
-          </li>
-          <li>
-            <svg>
-              <use href="./img/icons.svg#party" />
-            </svg>
-            <div>
-              <p>
-                Oferujemy salę do zabawy, muzykę, przekąski, napoje, atrakcje
-                oraz miłą atmosferę!
+          <section class="survey">
+            <div class="survey__intro">
+              <h2 class="survey__title">Dobrowolna ankieta absolwenta</h2>
+              <p class="survey__note">
+                Uzupełnienie tej ankiety jest całkowicie dobrowolne i służy
+                wyłącznie lepszemu poznaniu ścieżek naszych absolwentów.
               </p>
             </div>
-          </li>
-        </ul>
-      </section>
 
-      <form id="form">
-        <section class="registration">
-          <h2 class="registration__title">Formularz zapisu</h2>
+            <div class="survey__form">
+              <div class="form-group">
+                <label for="school">Ukończone studia</label>
+                <input
+                  type="text"
+                  id="school"
+                  name="school"
+                  maxlength="65"
+                  placeholder="Np. Informatyka na Politechnice Warszawskiej"
+                />
+              </div>
 
-          <div class="registration__form">
-            <div class="form-group">
-              <label for="name">Imię</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                required
-                minlength="3"
-                maxlength="66"
-                placeholder="Jan"
-              />
-            </div>
+              <div class="form-group">
+                <label for="profession">Aktualny zawód</label>
+                <input
+                  type="text"
+                  id="profession"
+                  name="profession"
+                  maxlength="65"
+                  placeholder="Np. Projektant UX / Programista / Nauczyciel"
+                />
+              </div>
 
-            <div class="form-group">
-              <label for="surname">Nazwisko</label>
-              <input
-                type="text"
-                id="surname"
-                name="surname"
-                minlength="3"
-                maxlength="66"
-                placeholder="Kowalski"
-                required
-              />
-            </div>
+              <div class="form-group">
+                <label for="workCountry">Miasto/Kraj zamieszkania</label>
+                <input
+                  type="text"
+                  id="workCountry"
+                  name="work_country"
+                  maxlength="65"
+                  placeholder="Np. Warszawa, Tinogasta/Argentyna"
+                />
+              </div>
+              <div>
+                <p id="msg" aria-live="polite" role="status"></p>
+              </div>
 
-            <div class="form-group">
-              <label for="contact">Kontakt</label>
-              <input
-                type="text"
-                id="contact"
-                name="contact"
-                maxlength="66"
-                placeholder="kowalski@email.com lub nr tel."
-                required
-              />
+              <div class="consent">
+                <input
+                  type="checkbox"
+                  id="termsConsent"
+                  name="terms_consent"
+                  required
+                />
+                <label for="termsConsent" class="consent__label">
+                  Oświadczam, że zapoznałem/-am się z
+                  <button
+                    type="button"
+                    class="consent__trigger"
+                    id="termsTrigger"
+                    aria-haspopup="dialog"
+                    aria-controls="termsModal"
+                  >
+                    regulaminem
+                  </button>
+                  i akceptuję jego treść.
+                </label>
+              </div>
+              <div class="form-group">
+                <div
+                  class="cf-turnstile"
+                  data-sitekey="0x4AAAAAACzrdBWTmqQMp0l-"
+                ></div>
+              </div>
+              <button
+                id="btnSubmit"
+                type="submit"
+                class="btn-submit survey__submit"
+              >
+                Wyślij formularz
+              </button>
             </div>
-
-            <div class="form-group">
-              <label for="year">Rok ukończenia</label>
-              <input
-                type="number"
-                id="year"
-                name="year"
-                placeholder="2008"
-                min="1995"
-                max="2026"
-                required
-              />
-            </div>
-
-            <div class="form-group">
-              <label for="addInfo">Dodatkowa informacja (opcjonalnie)</label>
-              <textarea
-                id="addInfo"
-                name="add_info"
-                maxlength="255"
-                placeholder="Np. osoba towarzysząca"
-              ></textarea>
-            </div>
-          </div>
-        </section>
-
-        <section class="survey">
-          <div class="survey__intro">
-            <h2 class="survey__title">Dobrowolna ankieta absolwenta</h2>
-            <p class="survey__note">
-              Uzupełnienie tej ankiety jest całkowicie dobrowolne i służy
-              wyłącznie lepszemu poznaniu ścieżek naszych absolwentów.
-            </p>
-          </div>
-
-          <div class="survey__form">
-            <div class="form-group">
-              <label for="school">Ukończone studia</label>
-              <input
-                type="text"
-                id="school"
-                name="school"
-                maxlength="65"
-                placeholder="Np. Informatyka na Politechnice Warszawskiej"
-              />
-            </div>
-
-            <div class="form-group">
-              <label for="profession">Aktualny zawód</label>
-              <input
-                type="text"
-                id="profession"
-                name="profession"
-                maxlength="65"
-                placeholder="Np. Projektant UX / Programista / Nauczyciel"
-              />
-            </div>
-
-            <div class="form-group">
-              <label for="workCountry">Miasto/Kraj zamieszkania</label>
-              <input
-                type="text"
-                id="workCountry"
-                name="work_country"
-                maxlength="65"
-                placeholder="Np. Warszawa, Tinogasta/Argentyna"
-              />
-            </div>
-            <div>
-              <p id="msg" aria-live="polite" role="status"></p>
-            </div>
-
-            <div class="consent">
-              <input
-                type="checkbox"
-                id="termsConsent"
-                name="terms_consent"
-                required
-              />
-              <label for="termsConsent" class="consent__label">
-                Oświadczam, że zapoznałem/-am się z
-                <button
-                  type="button"
-                  class="consent__trigger"
-                  id="termsTrigger"
-                  aria-haspopup="dialog"
-                  aria-controls="termsModal"
-                >
-                  regulaminem
-                </button>
-                i akceptuję jego treść.
-              </label>
-            </div>
-            <div class="form-group">
-              <div
-                class="cf-turnstile"
-                data-sitekey="0x4AAAAAACzrdBWTmqQMp0l-"
-              ></div>
-            </div>
-            <button
-              id="btnSubmit"
-              type="submit"
-              class="btn-submit survey__submit"
-            >
-              Wyślij formularz
-            </button>
-          </div>
-        </section>
-      </form>
+          </section>
+        </form>
+      </div>
     </main>
 
     <div
