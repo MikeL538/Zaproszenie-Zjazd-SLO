@@ -7,12 +7,10 @@ The UI is written in Polish because it serves a real local audience. This README
 ## Live Project
 
 Public website:
-
-<https://mikel538.github.io/Zaproszenie-Zjazd-SLO/>
+https://zjazd-slo.mikeldev.online/
 
 Related admin panel:
-
-<https://mikel538.github.io/Zaproszenie-Zjazd-SLO-Admin/>
+https://zjazd-slo-admin.mikeldev.online/
 
 Demo credentials for the admin panel:
 
