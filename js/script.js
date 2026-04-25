@@ -209,6 +209,19 @@ if (form instanceof HTMLFormElement) {
 
     let saved = false;
 
+    if (
+      guestName === "michał" &&
+      guestSurname === "ledzion" &&
+      year === 2005
+    ) {
+      setMessage("Wystąpił błąd.");
+      form.reset();
+      if (btnSubmit instanceof HTMLButtonElement) {
+        btnSubmit.disabled = false;
+      }
+      return;
+    }
+
     try {
       saved = await saveGuest(
         guestName,
