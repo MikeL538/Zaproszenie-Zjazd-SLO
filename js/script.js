@@ -9,6 +9,7 @@ const termsTrigger = document.querySelector("#termsTrigger");
 const termsModal = document.querySelector("#termsModal");
 const termsClose = document.querySelector("#termsClose");
 const btnSubmit = document.querySelector("#btnSubmit");
+const guestList = document.querySelector("#guestList");
 let lastFocusedElement = null;
 
 const VALIDATION_ERRORS = {
@@ -71,6 +72,49 @@ function validateFormData({
   }
 
   return null;
+}
+
+async function loadGuests() {
+  if (!(guestList instanceof HTMLUListElement)) return;
+
+  try {
+    const response = await fetch(
+      `${supabaseUrl}/rest/v1/people_public?select=graduation,display_name&order=graduation.desc`,
+      {
+        headers: {
+          apikey: supabaseKey,
+          Authorization: `Bearer ${supabaseKey}`,
+        },
+      },
+    );
+
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    guestList.innerHTML = "";
+
+    data.forEach((guest) => {
+      const li = document.createElement("li");
+      li.classList.add("guests__list-item");
+
+      li.innerHTML = `
+        <span class="guest-year">(${guest.graduation})</span>
+        <span class="guest-name">${guest.display_name}</span>
+  
+      `;
+
+      guestList.appendChild(li);
+    });
+  } catch (error) {
+    const li = document.createElement("li");
+    li.classList.add("guests__list-item");
+    li.innerHTML = `Błąd wczytywania`;
+    guestList.appendChild(li);
+    console.error("Error loading guests:", error);
+  }
 }
 
 async function saveGuest(
@@ -209,11 +253,7 @@ if (form instanceof HTMLFormElement) {
 
     let saved = false;
 
-    if (
-      guestName === "michał" &&
-      guestSurname === "ledzion" &&
-      year === 2005
-    ) {
+    if (guestName === "michał" && guestSurname === "ledzion" && year === 2005) {
       setMessage("Wystąpił błąd.");
       form.reset();
       if (btnSubmit instanceof HTMLButtonElement) {
@@ -248,6 +288,7 @@ if (form instanceof HTMLFormElement) {
 
     setMessage("Zapisano pomyślnie.", "green");
     form.reset();
+    await loadGuests();
 
     if (window.turnstile && typeof window.turnstile.reset === "function") {
       window.turnstile.reset();
@@ -313,3 +354,5 @@ document.addEventListener("keydown", (event) => {
     closeTermsModal();
   }
 });
+
+loadGuests();

@@ -504,3 +504,32 @@ section {
   text-align: center;
   padding-bottom: 30px;
 }
+
+.guests {
+  background-color: #f8dbb9;
+  border-radius: 12px;
+  margin: 45px auto;
+  padding: 5px;
+  max-width: 300px;
+  width: 100%;
+
+  border: 3px solid #6c847e;
+
+  &__title {
+    margin-bottom: 8px;
+    text-align: center;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    font-size: 1rem;
+    list-style: none;
+    max-height: 250px;
+    overflow-y: auto;
+
+    &-item {
+      margin-left: 10px;
+    }
+  }
+}
